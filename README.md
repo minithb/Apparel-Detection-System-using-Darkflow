@@ -42,6 +42,10 @@ jeans
 
 And that's it. `darkflow` will take care of the rest.
 
+## Annotate training images
+
+I used [LabelImg](https://github.com/tzutalin/labelImg) to annotate my input data. After annotating the data, keep training images in `./train_images` folder and annotation file (`.xml`) in `./annotations` folder
+
 ## Flowing the graph using `flow`
 
 ```bash
@@ -51,7 +55,7 @@ flow --h
 
 ## Training the model
 
-The configuration file `tiny-yolo-2c.cfg` is in `/cfg` folder. 
+The configuration file `tiny-yolo-2c.cfg` is in `/cfg` folder. I used 15 images to train the model.
 
 I trained the model for 100 epoch with ADAM Optimizer, learning rate 1e-4 and batch size 15. I used pre-trained tiny-yolo weights. [Download link.](https://pjreddie.com/media/files/tiny-yolo.weights)
 
@@ -59,21 +63,24 @@ I trained the model for 100 epoch with ADAM Optimizer, learning rate 1e-4 and ba
 
 ```bash
 ## Training using pre-trained weights
-flow --train --model cfg/tiny-yolo-2c.cfg --load tiny-yolo.weights --trainer adam --dataset train_images/ --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
+flow --train --model cfg/tiny-yolo-2c.cfg --load tiny-yolo.weights --trainer adam --dataset train_images/ 
+	 --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
 ```
 
 ### Train from start 
 
 ```bash
 ## Training from start
-flow --train --model cfg/tiny-yolo-2c.cfg --trainer adam --dataset train_images/ --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
+flow --train --model cfg/tiny-yolo-2c.cfg --trainer adam --dataset train_images/ 
+	 --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
 ```
 
 ### Train using checkpoint in `./ckpt` folder, for e.g 100
 
 ```bash
 ## Training using previious checkpoint
-flow --train --model cfg/tiny-yolo-2c.cfg --load 100 --trainer adam --dataset train_images/ --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
+flow --train --model cfg/tiny-yolo-2c.cfg --load 100 --trainer adam --dataset train_images/ 
+	 --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
 ```
 
 ## Testing the model
@@ -105,7 +112,7 @@ When saving the `.pb` file, a `.meta` file will also be generated alongside it. 
 
 Darkflow supports loading from a `.pb` and `.meta` file for generating predictions (instead of loading from a `.cfg` and checkpoint or `.weights`).
 
-Please download `.pb` and `.meta` file from these links. [.pb file](https://drive.google.com/open?id=0B4VkcIqPPLbUR3RoTlRqMmZvQzQ) and [.meta file](https://drive.google.com/open?id=0B4VkcIqPPLbUcWdVQVFiaHVaM2c). Keep these files in `./built_graph` folder.
+Please download `.pb` and `.meta` file from these links: [.pb file](https://drive.google.com/open?id=0B4VkcIqPPLbUR3RoTlRqMmZvQzQ) and [.meta file](https://drive.google.com/open?id=0B4VkcIqPPLbUcWdVQVFiaHVaM2c). Keep these files in `./built_graph` folder.
 
 ```bash
 ## Forward images in test_images for predictions based on protobuf file
