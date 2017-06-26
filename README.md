@@ -85,12 +85,12 @@ flow --train --model cfg/tiny-yolo-2c.cfg --load 100 --trainer adam --dataset tr
 
 ## Testing the model
 
-There are two ways to test the model. Using last checkpoint or using `.pb` file. I used 5 test images, which are located in `test_images` folder. 
+There are two ways to test the model. Using last checkpoint or using `.pb` file. I used 5 test images, which are located in `./test_images` folder. 
 
 ### Test using checkpoint in `./ckpt` folder
 
 ```bash
-flow --model cfg/yolo-new.cfg --load 1500 --imgdir test_images/
+flow --model cfg/yolo-new.cfg --load 100 --imgdir test_images/
 ```
 
 ### Test using protobuf file (`.pb`)  
