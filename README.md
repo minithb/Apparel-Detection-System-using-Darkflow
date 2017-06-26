@@ -1,4 +1,4 @@
-## Apparel Classification using Darkflow 
+## Apparel Detection System using Darkflow 
 
 I have used Darkflow for this project. [Link to Original repo](https://github.com/thtrieu/darkflow).
 
@@ -8,7 +8,7 @@ Output example:
 
 ## Dependencies
 
-Python3, tensorflow 1.0, numpy, OpenCV 3.
+Python3, tensorflow >= 1.0, numpy, OpenCV 3.
 
 ### Getting started
 
@@ -64,7 +64,7 @@ I trained the model for 100 epoch with ADAM Optimizer, learning rate 1e-4 and ba
 ```bash
 ## Training using pre-trained weights
 flow --train --model cfg/tiny-yolo-2c.cfg --load tiny-yolo.weights --trainer adam --dataset train_images/ 
-	 --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
+ --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
 ```
 
 ### Train from start 
@@ -72,7 +72,7 @@ flow --train --model cfg/tiny-yolo-2c.cfg --load tiny-yolo.weights --trainer ada
 ```bash
 ## Training from start
 flow --train --model cfg/tiny-yolo-2c.cfg --trainer adam --dataset train_images/ 
-	 --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
+ --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
 ```
 
 ### Train using checkpoint in `./ckpt` folder, for e.g 100
@@ -80,7 +80,7 @@ flow --train --model cfg/tiny-yolo-2c.cfg --trainer adam --dataset train_images/
 ```bash
 ## Training using previious checkpoint
 flow --train --model cfg/tiny-yolo-2c.cfg --load 100 --trainer adam --dataset train_images/ 
-	 --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
+ --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
 ```
 
 ## Testing the model
