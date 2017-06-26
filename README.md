@@ -57,7 +57,7 @@ flow --h
 
 The configuration file `tiny-yolo-2c.cfg` is in `/cfg` folder. I used 15 images to train the model.
 
-I trained the model for 100 epoch with ADAM Optimizer, learning rate 1e-4 and batch size 15. I used pre-trained tiny-yolo weights. [Download link.](https://pjreddie.com/media/files/tiny-yolo.weights)
+I trained the model for 100 epoch(es) with ADAM Optimizer, learning rate 1e-4 and batch size 15. I used pre-trained tiny-yolo weights. [Download link.](https://pjreddie.com/media/files/tiny-yolo.weights)
 
 ### Train using `.weights` file
 
