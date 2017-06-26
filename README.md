@@ -4,7 +4,7 @@ I have used Darkflow for this project. [Link to Original repo](https://github.co
 
 Output example:
 
-//[img](test_output/1.jpg)
+![img](test_output/1.jpg)
 
 ## Dependencies
 
@@ -55,21 +55,21 @@ The configuration file `tiny-yolo-2c.cfg` is in `/cfg` folder.
 
 I trained the model for 100 epoch with ADAM Optimizer, learning rate 1e-4 and batch size 15. I used pre-trained tiny-yolo weights. [Download link.](https://pjreddie.com/media/files/tiny-yolo.weights)
 
-# Train using `.weights` file
+### Train using `.weights` file
 
 ```bash
 ## Training using pre-trained weights
 flow --train --model cfg/tiny-yolo-2c.cfg --load tiny-yolo.weights --trainer adam --dataset train_images/ --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
 ```
 
-# Train from start 
+### Train from start 
 
 ```bash
 ## Training from start
 flow --train --model cfg/tiny-yolo-2c.cfg --trainer adam --dataset train_images/ --annotation annotations/ --batch 2 --epoch 100 --lr 1e-4
 ```
 
-# Train using checkpoint in `./ckpt` folder, for e.g 100
+### Train using checkpoint in `./ckpt` folder, for e.g 100
 
 ```bash
 ## Training using previious checkpoint
@@ -78,20 +78,19 @@ flow --train --model cfg/tiny-yolo-2c.cfg --load 100 --trainer adam --dataset tr
 
 ## Testing the model
 
-I used 5 test images.
+There are two ways to test the model. Using last checkpoint or using `.pb` file. I used 5 test images, which are located in `test_images` folder. 
 
-# Test using checkpoint in `./ckpt` folder
+### Test using checkpoint in `./ckpt` folder
 
 ```bash
 flow --model cfg/yolo-new.cfg --load 1500 --imgdir test_images/
 ```
 
-
-# Test using protobuf file (`.pb`)  
+### Test using protobuf file (`.pb`)  
 
 For this, we first need save the built graph to protobuf file (`.pb`)
 
-1. Save the built graph to a protobuf file (`.pb`)
+#### Save the built graph to a protobuf file (`.pb`)
 
 ```bash
 ## Saving the lastest checkpoint to protobuf file
@@ -102,11 +101,11 @@ flow --model cfg/tiny-yolo-2c.cfg --load bin/tiny-yolo.weights --savepb
 ```
 When saving the `.pb` file, a `.meta` file will also be generated alongside it. This `.meta` file is a JSON dump of everything in the `meta` dictionary that contains information nessecary for post-processing such as `anchors` and `labels`. This way, everything you need to make predictions from the graph and do post processing is contained in those two files - no need to have the `.cfg` or any labels file tagging along.
 
-2. Testing using `.pb` file. 
+#### Test using `.pb` file. 
 
 Darkflow supports loading from a `.pb` and `.meta` file for generating predictions (instead of loading from a `.cfg` and checkpoint or `.weights`).
 
-Please download `.pb` and `.meta` file here. [.pb file](https://drive.google.com/open?id=0B4VkcIqPPLbUR3RoTlRqMmZvQzQ) and [.meta file](https://drive.google.com/open?id=0B4VkcIqPPLbUcWdVQVFiaHVaM2c). Keep these files in `./built_graph` folder.
+Please download `.pb` and `.meta` file from these links. [.pb file](https://drive.google.com/open?id=0B4VkcIqPPLbUR3RoTlRqMmZvQzQ) and [.meta file](https://drive.google.com/open?id=0B4VkcIqPPLbUcWdVQVFiaHVaM2c). Keep these files in `./built_graph` folder.
 
 ```bash
 ## Forward images in test_images for predictions based on protobuf file
@@ -115,7 +114,7 @@ flow --pbLoad built_graph/tiny-yolo-2c.pb --metaLoad built_graph/tiny-yolo-2c.me
 
 Output images will in `./out` folder within `./test_images` folder.
 
-Lastly, I you want to train or test using my latest checkpoint. Please check out this [drive folder](https://drive.google.com/open?id=0B4VkcIqPPLbUQy1JTGdXS1ZuVlE). Keep these files in `./ckpt` folder. 
+Lastly, If you want to train or test using my latest checkpoint. Please check out this [drive folder](https://drive.google.com/open?id=0B4VkcIqPPLbUQy1JTGdXS1ZuVlE). Download and keep these files in `./ckpt` folder. 
 
 That's all.
 
